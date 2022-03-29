@@ -1,11 +1,25 @@
 import { useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import AdminLayout from './layouts/AdminLayout'
+import WebsiteLayout from './layouts/WebsiteLayout'
+import Dashboard from './pages/Admin/Dashboard'
+import HomePage from './pages/HomePage'
 
 
 function App() {
-  const [count, setCount] = useState(0)
   return (
     <div className="App">
-      {count + 1}
+      <Routes>
+        //website router
+        <Route path='/' element={<WebsiteLayout/>}>
+          <Route index element={<HomePage/>}/>
+        </Route>
+        //admin router
+        <Route path='admin' element={<AdminLayout/>}>
+          <Route index element={<Navigate to={"dashboard"}/>}/>
+          <Route path='dashboard' element={<Dashboard/>}/>
+        </Route>
+      </Routes>
     </div>
   )
 }
