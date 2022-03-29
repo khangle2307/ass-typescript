@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import AdminLayout from './layouts/AdminLayout'
 import WebsiteLayout from './layouts/WebsiteLayout'
 import Dashboard from './pages/Admin/Dashboard'
+import ProductManager from './pages/Admin/products/ProductManager'
 import HomePage from './pages/HomePage'
 
 
@@ -18,6 +19,9 @@ function App() {
         <Route path='admin' element={<AdminLayout/>}>
           <Route index element={<Navigate to={"dashboard"}/>}/>
           <Route path='dashboard' element={<Dashboard/>}/>
+          <Route path='products' element={<ProductManager/>}>
+              
+          </Route>
         </Route>
       </Routes>
     </div>
