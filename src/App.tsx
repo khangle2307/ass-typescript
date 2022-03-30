@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { getAll } from './api/category'
+import { create, getAll } from './api/category'
 import AdminLayout from './layouts/AdminLayout'
 import WebsiteLayout from './layouts/WebsiteLayout'
+import AddCategory from './pages/Admin/categories/AddCategory'
 import CategoryManager from './pages/Admin/categories/CategoryManager'
 import Dashboard from './pages/Admin/Dashboard'
 import ProductManager from './pages/Admin/products/ProductManager'
@@ -20,6 +21,11 @@ function App() {
     }
     getCategories();
   },[])
+
+  const HandleAdd = async (data : CategoryType) => {
+    await create(data);
+    setCategories([...categories,data])
+  }
   return (
     <div className="App">
       <Routes>
@@ -38,6 +44,7 @@ function App() {
           //category router
           <Route path='categories'>
             <Route index element={<CategoryManager category={categories}/>}/>
+            <Route path='add' element={<AddCategory onAdd={HandleAdd}/>}/>
           </Route>
         </Route>
       </Routes>

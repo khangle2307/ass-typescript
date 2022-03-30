@@ -2,7 +2,7 @@ import React from 'react'
 import { Space, Table , Button } from 'antd';
 import { CategoryType } from '../../../types/category';
 type Props = {
-  category : CategoryType[]
+  category : CategoryType[],
 }
 
 const CategoryManager = ({category}: Props) => {
@@ -20,6 +20,7 @@ const CategoryManager = ({category}: Props) => {
     {
       title : "Action",
       dataIndex : "action",
+      key : 'action',
       render : (record : any) => (
         <Space size={'small'}>
           <a href="/categories/:id/edit">Edit</a>
@@ -37,7 +38,7 @@ const CategoryManager = ({category}: Props) => {
   })
   return (
     <div>
-      <Button type='primary'><a href="/categories/add">Add</a></Button>
+      <Button type='primary'><a href="categories/add">Add</a></Button>
       <Table columns={columns} dataSource={data}/>
     </div>
 
