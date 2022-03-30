@@ -21,7 +21,9 @@ const AdminLayout = (props: Props) => {
         <Menu.Item key="3">
           <NavLink to={"/admin/products"}>Sản phẩm</NavLink>
         </Menu.Item>
-        <Menu.Item key="4">Người dùng</Menu.Item>
+        <Menu.Item key="4">
+          <NavLink to={"/admin/users"}>Người dùng</NavLink>
+        </Menu.Item>
       </Menu>
     </Header>
     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,backgroundColor : 'white'}}>
