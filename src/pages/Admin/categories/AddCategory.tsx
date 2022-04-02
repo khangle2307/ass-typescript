@@ -4,21 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { CategoryType } from '../../../types/category';
 
 type AddCategoryProps = {
-   onAdd : (category : CategoryType) => void
 }
+
 type InputForm = {
    name : string
 }
-const AddCategory = ({ onAdd }: AddCategoryProps) => {
+const AddCategory = (prop: AddCategoryProps) => {
    const {register,handleSubmit,formState : { errors }} = useForm<InputForm> ();
    const navigate = useNavigate();
-   const onsubmit : SubmitHandler <InputForm> = (data) => {
-      onAdd(data);
-      navigate("/admin/categories");
-   }
+
    return (
       <div>
-         <form onSubmit={handleSubmit(onsubmit)}>
+         <form >
             <div className="mb-6">
                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tên loại</label>
                <input 

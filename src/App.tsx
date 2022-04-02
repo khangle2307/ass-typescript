@@ -12,20 +12,6 @@ import { CategoryType } from './types/category'
 
 
 function App() {
-  const [categories,setCategories] = useState<CategoryType[]>([]);
-  useEffect(() => {
-    const getCategories = async () => {
-      const { data } = await getAll();
-      setCategories(data)
-       
-    }
-    getCategories();
-  },[])
-
-  const HandleAdd = async (data : CategoryType) => {
-    await create(data);
-    setCategories([...categories,data])
-  }
   return (
     <div className="App">
       <Routes>
@@ -43,8 +29,8 @@ function App() {
           </Route>
           //category router
           <Route path='categories'>
-            <Route index element={<CategoryManager category={categories}/>}/>
-            <Route path='add' element={<AddCategory onAdd={HandleAdd}/>}/>
+            <Route index element={<CategoryManager />}/>
+            <Route path='add' element={<AddCategory />}/>
           </Route>
         </Route>
       </Routes>

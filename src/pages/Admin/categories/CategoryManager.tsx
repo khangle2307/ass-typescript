@@ -1,11 +1,13 @@
 import React from 'react'
 import { Space, Table , Button } from 'antd';
-import { CategoryType } from '../../../types/category';
+import { useDispatch, useSelector } from 'react-redux';
 type Props = {
-  category : CategoryType[],
+  
 }
 
-const CategoryManager = ({category}: Props) => {
+const CategoryManager = (prop: Props) => {
+  const categories = useSelector((state : any) => state.category.data);
+  const distpatch = useDispatch();  
   const columns = [
     {
        title : '*',
@@ -30,16 +32,16 @@ const CategoryManager = ({category}: Props) => {
     }
   ];
   
-  const data = category.map((item : CategoryType,index : number) => {
-    return {
-      index : index + 1,
-      name : item.name
-    }
-  })
+  // const data = category.map((item : CategoryType,index : number) => {
+  //   return {
+  //     index : index + 1,
+  //     name : item.name
+  //   }
+  // })
   return (
     <div>
       <Button type='primary'><a href="categories/add">Add</a></Button>
-      <Table columns={columns} dataSource={data}/>
+      {/* <Table columns={columns} dataSource={data}/> */}
     </div>
 
   )
