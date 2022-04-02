@@ -1,7 +1,8 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { CategoryType } from '../../../types/category';
+import { addCategory } from '../../../features/categorySlice';
 
 type AddCategoryProps = {
 }
@@ -10,12 +11,18 @@ type InputForm = {
    name : string
 }
 const AddCategory = (prop: AddCategoryProps) => {
+   const dispatch = useDispatch();
    const {register,handleSubmit,formState : { errors }} = useForm<InputForm> ();
    const navigate = useNavigate();
 
+   const onsubmit : SubmitHandler <InputForm> = async (data) => {
+      dispatch(addCategory(data));
+      navigate("/admin/categories");
+   }
+
    return (
       <div>
-         <form >
+         <form onSubmit={handleSubmit(onsubmit)}>
             <div className="mb-6">
                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tên loại</label>
                <input 

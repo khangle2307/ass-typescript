@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Space, Table , Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { CategoryType } from '../../../types/category';
+import { getCategories } from './../../../features/categorySlice';
+
 type Props = {
   
 }
@@ -8,6 +11,10 @@ type Props = {
 const CategoryManager = (prop: Props) => {
   const categories = useSelector((state : any) => state.category.data);
   const distpatch = useDispatch();  
+
+  useEffect(() => {
+    distpatch(getCategories());    
+  },[])
   const columns = [
     {
        title : '*',
@@ -32,16 +39,16 @@ const CategoryManager = (prop: Props) => {
     }
   ];
   
-  // const data = category.map((item : CategoryType,index : number) => {
-  //   return {
-  //     index : index + 1,
-  //     name : item.name
-  //   }
-  // })
+  const data = categories.map((item : CategoryType,index : number) => {
+    return {
+      index : index + 1,
+      name : item.name
+    }
+  })
   return (
     <div>
       <Button type='primary'><a href="categories/add">Add</a></Button>
-      {/* <Table columns={columns} dataSource={data}/> */}
+      <Table columns={columns} dataSource={data} rowKey="index"/>
     </div>
 
   )
