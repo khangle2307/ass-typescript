@@ -5,6 +5,7 @@ import AdminLayout from './layouts/AdminLayout'
 import WebsiteLayout from './layouts/WebsiteLayout'
 import AddCategory from './pages/Admin/categories/AddCategory'
 import CategoryManager from './pages/Admin/categories/CategoryManager'
+import EditCategory from './pages/Admin/categories/EditCategory'
 import Dashboard from './pages/Admin/Dashboard'
 import ProductManager from './pages/Admin/products/ProductManager'
 import HomePage from './pages/HomePage'
@@ -31,6 +32,7 @@ function App() {
           <Route path='categories'>
             <Route index element={<CategoryManager />}/>
             <Route path='add' element={<AddCategory />}/>
+            <Route path=':id/edit' element={<EditCategory/>}/>
           </Route>
         </Route>
       </Routes>

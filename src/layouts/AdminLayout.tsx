@@ -16,7 +16,7 @@ const AdminLayout = (props: Props) => {
           <NavLink to={"/"}>Trang chủ</NavLink>
         </Menu.Item>
         <Menu.Item key="2">
-          <NavLink to={"/admin/categories"}>Loại hàng</NavLink>
+          <NavLink to={"categories"}>Loại hàng</NavLink>
         </Menu.Item>
         <Menu.Item key="3">
           <NavLink to={"/admin/products"}>Sản phẩm</NavLink>

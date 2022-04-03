@@ -11,3 +11,14 @@ export const create = (category : CategoryType) => {
    return instance.post(url,category)
 }
 
+export const getById = (_id : string) => {
+   const url = `/categories/${_id}`;
+   return instance.get(url);
+}
+
+export const updateById = (category) => {
+   const url = `/categories/${category._id}`;
+   return instance.put(url,category);
+}
+
+
