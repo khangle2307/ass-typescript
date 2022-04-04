@@ -35,7 +35,7 @@ const userSlice = createSlice({
       builder.addCase(signinUser.fulfilled,(state,action) => {
          state.isAuthenticated = true;
          const user = state.data = action.payload;
-         localStorage.setItem('user',user)
+         localStorage.setItem('user',JSON.stringify(user));
       })
    }
 })
