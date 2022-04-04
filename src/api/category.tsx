@@ -21,4 +21,9 @@ export const updateById = (category) => {
    return instance.put(url,category);
 }
 
+export const removeById = (_id : number) => {
+   const url = `/categories/${_id}`;
+   return instance.delete(url);
+}
+
 

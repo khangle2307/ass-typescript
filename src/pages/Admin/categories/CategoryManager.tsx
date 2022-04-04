@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react'
-import { Space, Table, Button } from 'antd';
+import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryType } from '../../../types/category';
-import { getCategories } from './../../../features/categorySlice';
-import { Link, useParams } from 'react-router-dom';
+import { getCategories , removeCategoryById} from './../../../features/categorySlice';
+import { Link , useParams } from 'react-router-dom';
 
-const { Column, ColumnGroup } = Table
+const { Column } = Table
 type Props = {
 
 }
 
+
 const CategoryManager = (prop: Props) => {
-  const distpatch = useDispatch();
   const categories = useSelector((state: any) => state.category.data);
+  const distpatch = useDispatch();
+ 
+  function cancel(e) {
+    message.error('Delete not succes !');
+  }
   
   useEffect(() => {
     distpatch(getCategories());
@@ -21,7 +26,7 @@ const CategoryManager = (prop: Props) => {
   const data = categories.map((item: CategoryType, index: number) => {
     return {
       index: index + 1,
-      _id : item._id,
+      _id: item._id,
       name: item.name,
     }
   })
@@ -37,7 +42,15 @@ const CategoryManager = (prop: Props) => {
           render={(text, record: CategoryType) => (
             <Space size="middle">
               <Link to={`${record._id}/edit`}>Edit</Link>
-              <a>Delete</a>
+              <Popconfirm
+                title="Are you sure to delete this task?"
+                onConfirm={() => {distpatch(removeCategoryById(record._id))}}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <a href="">Delete</a>
+              </Popconfirm>
             </Space>
           )}
         />

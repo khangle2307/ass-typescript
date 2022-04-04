@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {create, getAll, getById, updateById } from './../api/category';
+import {create, getAll, getById, removeById, updateById } from './../api/category';
 
 //getCategories
 export const getCategories = createAsyncThunk(
@@ -32,6 +32,14 @@ export const updateCategoryById = createAsyncThunk(
    }
 )
 
+export const removeCategoryById = createAsyncThunk(
+   "categories/removeCategoryById",
+   async (id) => {
+      const { data } = await removeById(id);
+      return data;
+   }
+)
+
 
 const categorySlice = createSlice({
    name : 'category',
@@ -49,11 +57,12 @@ const categorySlice = createSlice({
        const { _id , name } = action.payload;
        const category = state.data.find(item => item._id === _id);
        category.name = name;
-    })
-   //  builder.addCase(removeCategory.fulfilled,(state,action) => {
-   //    const { _id } = action.payload;
-   //    state.data.filter(item => item._id !== _id);
-   // })
+    }),
+    builder.addCase(removeCategoryById.fulfilled,(state,action) => {
+      const { _id } = action.payload;
+      const removeCategory = state.data.filter(item => item._id !== _id);
+      state.data = removeCategory;
+   })
   }
 })
 
