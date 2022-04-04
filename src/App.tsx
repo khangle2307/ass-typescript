@@ -10,8 +10,8 @@ import Dashboard from './pages/Admin/Dashboard'
 import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import HomePage from './pages/HomePage'
+import Signin from './pages/Signin'
 import Signup from './pages/Signup'
-import { CategoryType } from './types/category'
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
           <Route index element={<HomePage/>}/>
           //auth router
           <Route path='signup' element={<Signup/>}/>
+          <Route path='signin' element={<Signin/>}/>
         </Route>
         //admin router
         <Route path='admin' element={<AdminLayout/>}>
