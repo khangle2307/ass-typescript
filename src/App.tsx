@@ -7,8 +7,10 @@ import AddCategory from './pages/Admin/categories/AddCategory'
 import CategoryManager from './pages/Admin/categories/CategoryManager'
 import EditCategory from './pages/Admin/categories/EditCategory'
 import Dashboard from './pages/Admin/Dashboard'
+import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import HomePage from './pages/HomePage'
+import Signup from './pages/Signup'
 import { CategoryType } from './types/category'
 
 
@@ -19,6 +21,8 @@ function App() {
         //website router
         <Route path='/' element={<WebsiteLayout/>}>
           <Route index element={<HomePage/>}/>
+          //auth router
+          <Route path='signup' element={<Signup/>}/>
         </Route>
         //admin router
         <Route path='admin' element={<AdminLayout/>}>
@@ -27,6 +31,7 @@ function App() {
           //product router
           <Route path='products'>
             <Route index  element={<ProductManager/>}/>
+            <Route path='add' element={<AddProduct/>}/>
           </Route>
           //category router
           <Route path='categories'>

@@ -41,7 +41,7 @@ const ProductManager = (props: Props) => {
   })
   return (
     <div>
-      <Button type='primary'><a href="categories/add">Add</a></Button>
+      <Button type='primary' className='my-3'><a href="products/add">Add</a></Button>
       <Table dataSource={data} rowKey="index">
         <Column title="*" dataIndex="index" key="index" />
         <Column title="Name" dataIndex="name" key="name" />

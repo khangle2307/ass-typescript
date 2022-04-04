@@ -3,8 +3,7 @@ export type ProductType = {
    name : string,
    price : number,
    quantity : number,
-   image : string,
-   color : string,
+   color : string[],
    memory : string,
    category : string
 }
