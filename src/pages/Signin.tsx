@@ -17,7 +17,8 @@ const Signin = (props: Props) => {
   
    
   return (
-    <div>
+    <div className='w-[600px] mx-auto my-[15px]'>
+       <h1 className='text-2xl font-semibold text-center'>Đăng nhập</h1>
        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-6">
                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>

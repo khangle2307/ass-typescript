@@ -36,9 +36,8 @@ const AddProduct = (props: Props) => {
       dispatch(getCategories());      
    },[dispatch])
 
-   console.log(categories);
-
    const onSubmit : SubmitHandler<InputForm> = async (data) => {
+      console.log(data);
       dispatch(createProduct(data));
       navigate("/admin/products");
    }
@@ -115,7 +114,7 @@ const AddProduct = (props: Props) => {
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Category</label>
             <div className="flex">
                <div className="mb-3 xl:w-96">
-                      <select  className="form-select appearance-none
+                      <select {...register('category',{required : true})} className="form-select appearance-none
                       block
                       w-full
                       px-3
@@ -130,9 +129,8 @@ const AddProduct = (props: Props) => {
                       ease-in-out
                       m-0
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                         {categories?.map((item : CategoryType,index) => {
-                            console.log(item);
-                           return  <option key={index} value={`${item.name}`}>{item.name}</option>
+                         {categories?.map((item : CategoryType,index : number) => {
+                           return  <option key={index} value={item._id}>{item.name}</option>
                          })}
                       </select>
                </div>

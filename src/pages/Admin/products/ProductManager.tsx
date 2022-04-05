@@ -34,29 +34,31 @@ const ProductManager = (props: Props) => {
       name : item.name,
       price : item.price,
       quantity : item.quantity,
-      image : item.image,
+      // image : item.image,
       color : item.color,
-      memory : item.memory
+      memory : item.memory,
+      description : item.description
     }
   })
   return (
     <div>
-      <Button type='primary' className='my-3'><a href="products/add">Add</a></Button>
+      <Button type='primary' className='my-3'><Link to={"add"}>Add</Link></Button>
       <Table dataSource={data} rowKey="index">
         <Column title="*" dataIndex="index" key="index" />
         <Column title="Name" dataIndex="name" key="name" />
         <Column title="Price" dataIndex="price" key="price" />
         <Column title="Quantity" dataIndex="quantity" key="quantity" />
-        <Column 
+        {/* <Column 
           title="Image" 
           dataIndex="image" 
           key="image" 
           render={(value,record : ProductType) => (
             <img src={`${record.image}`} width={100}/>
           )}
-        />
+        /> */}
         <Column title="Color" dataIndex="color" key="color" />
         <Column title="Memory" dataIndex="memory" key="memory" />
+        <Column title="Description" dataIndex="description" key="description" />
         <Column
           title="Action"
           key="action"
