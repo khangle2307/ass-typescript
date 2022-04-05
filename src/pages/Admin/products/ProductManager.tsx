@@ -3,7 +3,7 @@ import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { CategoryType } from '../../../types/category';
 import { Link} from 'react-router-dom';
-import { getProducts } from '../../../features/productSlice';
+import { getProducts , removeProductById} from '../../../features/productSlice';
 import { ProductType } from '../../../types/product';
 
 const { Column } = Table;
@@ -18,14 +18,6 @@ const ProductManager = (props: Props) => {
     dispatch(getProducts());
     console.log(products);
   },[])
-
-  function cancel(e) {
-    message.error('Delete not succes !');
-  }
-
-  function success(e) {
-    message.success('Delete succes !');
-  }
 
   const data = products.map((item,index) => {
     return {
@@ -67,8 +59,13 @@ const ProductManager = (props: Props) => {
               <Link to={`${record._id}/edit`}>Edit</Link>
               <Popconfirm
                 title="Are you sure to delete this task?"
-                onConfirm={success}
-                onCancel={cancel}
+                onConfirm={() => {
+                  dispatch(removeProductById(record._id));
+                  message.success("Deleted is success !");
+                }}
+                onCancel={() => {
+                  message.error('Delete not success !');
+                }}
                 okText="Yes"
                 cancelText="No"
               >

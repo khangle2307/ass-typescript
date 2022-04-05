@@ -17,3 +17,8 @@ export const create = (product : ProductType) => {
       }
    });
 }
+
+export const removeById = (_id : number) => {
+   const url = `/products/${_id}`;
+   return instance.delete(url)
+}
