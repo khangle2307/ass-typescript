@@ -5,6 +5,7 @@ import AddCategory from './pages/Admin/categories/AddCategory'
 import CategoryManager from './pages/Admin/categories/CategoryManager'
 import UpdateCategory from './pages/Admin/categories/UpdateCategory'
 import Dashboard from './pages/Admin/Dashboard'
+import PostManager from './pages/Admin/news/PostManager'
 import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import UpdateProduct from './pages/Admin/products/UpdateProduct'
@@ -39,6 +40,9 @@ function App() {
             <Route index element={<CategoryManager />}/>
             <Route path='add' element={<AddCategory />}/>
             <Route path=':id/edit' element={<UpdateCategory/>}/>
+          </Route>
+          <Route path='posts'>
+            <Route index element={<PostManager/>}/>
           </Route>
         </Route>
       </Routes>
