@@ -9,7 +9,7 @@ type InputForm = {
    name : string;
 }
 
-const EditCategory = (props: Props) => {
+const UpdateCategory = (props: Props) => {
    const { id } = useParams();
    const category = useSelector((state : any) => getCategoryById(state,id));
    const dispatch = useDispatch();
@@ -42,4 +42,4 @@ const EditCategory = (props: Props) => {
    )
 }
 
-export default EditCategory
+export default UpdateCategory

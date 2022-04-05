@@ -10,6 +10,11 @@ export const getCategories = createAsyncThunk(
    }
 )
 
+export const getCategoryById = (state,_id) => {
+   const category = state.category.data.find( item => item._id === _id);
+   return category;
+}
+
 //addCategory
 export const addCategory = createAsyncThunk(
    "categories/addCategory",
@@ -18,11 +23,6 @@ export const addCategory = createAsyncThunk(
       return data;
    }
 )
-
-export const getCategoryById = (state,_id) => {
-   const category = state.category.data.find( item => item._id === _id);
-   return category;
-}
 
 export const updateCategoryById = createAsyncThunk(
    "categories/updateCategoryById",

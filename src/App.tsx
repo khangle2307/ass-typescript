@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { create, getAll } from './api/category'
 import AdminLayout from './layouts/AdminLayout'
 import WebsiteLayout from './layouts/WebsiteLayout'
 import AddCategory from './pages/Admin/categories/AddCategory'
 import CategoryManager from './pages/Admin/categories/CategoryManager'
-import EditCategory from './pages/Admin/categories/EditCategory'
+import UpdateCategory from './pages/Admin/categories/UpdateCategory'
 import Dashboard from './pages/Admin/Dashboard'
 import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
+import UpdateProduct from './pages/Admin/products/UpdateProduct'
 import HomePage from './pages/HomePage'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
@@ -33,12 +32,13 @@ function App() {
           <Route path='products'>
             <Route index  element={<ProductManager/>}/>
             <Route path='add' element={<AddProduct/>}/>
+            <Route path=':id/edit' element={<UpdateProduct/>}/>
           </Route>
           //category router
           <Route path='categories'>
             <Route index element={<CategoryManager />}/>
             <Route path='add' element={<AddCategory />}/>
-            <Route path=':id/edit' element={<EditCategory/>}/>
+            <Route path=':id/edit' element={<UpdateCategory/>}/>
           </Route>
         </Route>
       </Routes>
