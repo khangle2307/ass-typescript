@@ -3,7 +3,7 @@ import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { ProductType } from '../../../types/product';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts } from '../../../features/postSlice';
+import { getPosts , removePostById } from '../../../features/postSlice';
 import { PostType } from '../../../types/post';
 
 const { Column } = Table;
@@ -59,6 +59,7 @@ const PostManager = (props: Props) => {
               <Popconfirm
                 title="Are you sure to delete this task?"
                 onConfirm={() => {
+                  dispatch(removePostById(record._id))
                   message.success("Deleted is success !");
                 }}
                 onCancel={() => {
