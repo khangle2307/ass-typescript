@@ -3,8 +3,9 @@ import { getAll , create, updateById ,removeById} from "../api/product";
 
 export const getProducts = createAsyncThunk(
    'products/getProducts',
-   async () => {
-      const { data } = await getAll();
+   async (count) => {
+      const { data } = await getAll(count);
+      console.log(data);
       return data;
    }
 )

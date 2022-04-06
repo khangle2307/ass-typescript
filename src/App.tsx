@@ -11,6 +11,7 @@ import UpdatePost from './pages/Admin/news/UpdatePost'
 import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import UpdateProduct from './pages/Admin/products/UpdateProduct'
+import UserManganger from './pages/Admin/users/UserManganger'
 import HomePage from './pages/HomePage'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
@@ -48,6 +49,10 @@ function App() {
             <Route index element={<PostManager/>}/>
             <Route path='add' element={<AddPost/>}/>
             <Route path=':id/edit' element={<UpdatePost/>}/>
+          </Route>
+          //user router
+          <Route path='users'>
+            <Route index element={<UserManganger/>}/>
           </Route>
         </Route>
       </Routes>

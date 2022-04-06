@@ -1,5 +1,6 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import { signin, signup } from '../api/auth';
+import { getAll } from '../api/user';
 
 export const signupUser = createAsyncThunk(
    "user/signup",
@@ -22,6 +23,14 @@ export const signinUser = createAsyncThunk(
    }
 )
 
+export const getUsers = createAsyncThunk(
+   "users/getUsers",
+   async () => {
+      const { data } = await getAll();
+      return data;
+   }
+)
+
 const userSlice = createSlice({
    name : "user",
    initialState : {
@@ -36,6 +45,9 @@ const userSlice = createSlice({
          state.isAuthenticated = true;
          const user = state.data = action.payload;
          localStorage.setItem('user',JSON.stringify(user));
+      }),
+      builder.addCase(getUsers.fulfilled,(state,action) => {
+         state.data = action.payload;
       })
    }
 })
