@@ -3,7 +3,7 @@ import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserType } from '../../../types/user';
-import { getUsers } from '../../../features/userSlice';
+import { getUsers , removeUserById } from '../../../features/userSlice';
 const { Column } = Table;
 
 type Props = {}
@@ -26,7 +26,6 @@ const UserManganger = (props: Props) => {
         address : item.address,
         phoneNumber : item.phoneNumber,
         email : item.email,
-
      }
   })
   return (
@@ -55,7 +54,7 @@ const UserManganger = (props: Props) => {
               <Popconfirm
                 title="Are you sure to delete this task?"
                 onConfirm={() => {
-                 
+                  dispatch(removeUserById(record._id))
                   message.success("Deleted is success !");
                 }}
                 onCancel={() => {

@@ -1,6 +1,6 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import { signin, signup } from '../api/auth';
-import { getAll } from '../api/user';
+import { getAll, removeById } from '../api/user';
 
 export const signupUser = createAsyncThunk(
    "user/signup",
@@ -31,6 +31,14 @@ export const getUsers = createAsyncThunk(
    }
 )
 
+export const removeUserById = createAsyncThunk(
+   "users/removeUserById",
+   async (id) => {
+      const { data } = await removeById(id);
+      return data;
+   }
+)
+
 const userSlice = createSlice({
    name : "user",
    initialState : {
@@ -48,6 +56,11 @@ const userSlice = createSlice({
       }),
       builder.addCase(getUsers.fulfilled,(state,action) => {
          state.data = action.payload;
+      }),
+      builder.addCase(removeUserById.fulfilled,(state,action) => {
+         const { _id } = action.payload;
+         const removeItem = state.data.filter(item => item._id !== _id);
+         state.data = removeItem;
       })
    }
 })
