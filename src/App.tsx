@@ -12,7 +12,7 @@ import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import UpdateProduct from './pages/Admin/products/UpdateProduct'
 import UserManganger from './pages/Admin/users/UserManganger'
-import HomePage from './pages/HomePage'
+import HomePage from './pages/view/HomePage'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 
