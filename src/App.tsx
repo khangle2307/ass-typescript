@@ -7,6 +7,7 @@ import UpdateCategory from './pages/Admin/categories/UpdateCategory'
 import Dashboard from './pages/Admin/Dashboard'
 import AddPost from './pages/Admin/news/AddPost'
 import PostManager from './pages/Admin/news/PostManager'
+import UpdatePost from './pages/Admin/news/UpdatePost'
 import AddProduct from './pages/Admin/products/AddProduct'
 import ProductManager from './pages/Admin/products/ProductManager'
 import UpdateProduct from './pages/Admin/products/UpdateProduct'
@@ -42,9 +43,11 @@ function App() {
             <Route path='add' element={<AddCategory />}/>
             <Route path=':id/edit' element={<UpdateCategory/>}/>
           </Route>
+          //post router
           <Route path='posts'>
             <Route index element={<PostManager/>}/>
             <Route path='add' element={<AddPost/>}/>
+            <Route path=':id/edit' element={<UpdatePost/>}/>
           </Route>
         </Route>
       </Routes>

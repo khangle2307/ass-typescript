@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts , removePostById } from '../../../features/postSlice';
 import { PostType } from '../../../types/post';
-
+import { getPostById } from '../../../features/postSlice';
 const { Column } = Table;
 type Props = {}
 
@@ -16,15 +16,15 @@ const PostManager = (props: Props) => {
 
   useEffect(() => {
      dispatch(getPosts());
-     console.log(posts);
-     
   },[])
-
+  console.log(posts);
+  
   const data = posts.map((item : PostType,index) => {
      return {
         index : index + 1,
         _id : item._id,
         title : item.title,
+        description : item.description,
         content : item.content,
         author : item.author,
         createdAt : item.createdAt,
