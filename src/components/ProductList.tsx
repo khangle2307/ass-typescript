@@ -4,14 +4,14 @@ type Props = {}
 
 const ProductList = (props: Props) => {
    return (
-      <div className='px-[20px]'>
+      <div className='px-[30px]'>
          <div className='flex justify-between my-[15px]'>
             <h2 className='text-2xl font-semibold'>Điện thoại nổi bật nhất</h2>
             <div className='space-x-4'>
-               <a href="" className='bg-gray-100 text-black p-2 border-[1px] rounded-lg'>Iphone</a>
-               <a href="" className='bg-gray-100 text-black p-2 border-[1px] rounded-lg'>Iphone</a>
-               <a href="" className='bg-gray-100 text-black p-2 border-[1px] rounded-lg'>Iphone</a>
-               <a href="" className='bg-gray-100 text-black p-2 border-[1px] rounded-lg'>Iphone</a>
+               <a href="" className='bg-gray-100 text-gray-600 p-2 border-[1px] rounded-lg'>Iphone</a>
+               <a href="" className='bg-gray-100 text-gray-600 p-2 border-[1px] rounded-lg'>Iphone</a>
+               <a href="" className='bg-gray-100 text-gray-600 p-2 border-[1px] rounded-lg'>Iphone</a>
+               <a href="" className='bg-gray-100 text-gray-600 p-2 border-[1px] rounded-lg'>Iphone</a>
             </div>
          </div>
          <div className='flex space-x-2'>
