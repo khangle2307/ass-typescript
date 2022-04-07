@@ -15,6 +15,7 @@ import UserManganger from './pages/Admin/users/UserManganger'
 import HomePage from './pages/view/HomePage'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
+import NotFound from './pages/view/NotFound'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           //auth router
           <Route path='signup' element={<Signup/>}/>
           <Route path='signin' element={<Signin/>}/>
+          <Route path='*' element={<NotFound/>}/>
         </Route>
         //admin router
         <Route path='admin' element={<AdminLayout/>}>
