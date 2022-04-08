@@ -26,7 +26,7 @@ const ProductManager = (props: Props) => {
       name : item.name,
       price : item.price,
       quantity : item.quantity,
-      // image : item.image,
+      image : item.image,
       color : item.color,
       memory : item.memory,
       description : item.description
@@ -40,14 +40,14 @@ const ProductManager = (props: Props) => {
         <Column title="Name" dataIndex="name" key="name" />
         <Column title="Price" dataIndex="price" key="price" />
         <Column title="Quantity" dataIndex="quantity" key="quantity" />
-        {/* <Column 
+        <Column 
           title="Image" 
           dataIndex="image" 
           key="image" 
           render={(value,record : ProductType) => (
             <img src={`${record.image}`} width={100}/>
           )}
-        /> */}
+        />
         <Column title="Color" dataIndex="color" key="color" />
         <Column title="Memory" dataIndex="memory" key="memory" />
         <Column title="Description" dataIndex="description" key="description" />

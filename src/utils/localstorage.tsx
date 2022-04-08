@@ -1,4 +1,8 @@
 export const isAuthenticate = () => {
-   if(!localStorage.getItem('user')) return;
-   return JSON.parse(localStorage.getItem('user') as string);
+   if(typeof window == "undefined") return false;
+   if(localStorage.getItem('user')) {
+      return JSON.parse(localStorage.getItem('user') as string);
+   }else {
+      return false
+   }
 }

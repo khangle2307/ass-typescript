@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import 'antd/dist/antd.css';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, FieldPathValue } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../../features/categorySlice';
 import { createProduct } from '../../../features/productSlice';
 import { CategoryType } from '../../../types/category';
+import axios from 'axios';
+import { uploadImage } from '../../../utils/cloudinary';
 //ant design
 const layout = {
    labelCol: {
@@ -21,6 +23,8 @@ type InputForm = {
    name: string,
    price: number,
    quantity: number,
+   image : FileList,
+   cloudinary_id : string,
    color: string[],
    memory: string,
    category: string,
@@ -37,15 +41,20 @@ const AddProduct = (props: Props) => {
    },[dispatch])
 
    const onSubmit : SubmitHandler<InputForm> = async (data) => {
-      console.log(data);
-      dispatch(createProduct(data));
+      const imageURL = await uploadImage(data);
+      data.image = imageURL.url;
+      
+      dispatch(createProduct(data))
       navigate("/admin/products");
+      
+             
+
    }
    return (
       <form onSubmit={handleSubmit(onSubmit)}>
          <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-            <input {...register('name', { required: true })} type="text" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            <input {...register('name',{required : true})} type="text" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
             {errors.name && <span className='text-red-600'>vui lòng nhập tên</span>}
          </div>
          <div className="mb-6">
@@ -59,10 +68,10 @@ const AddProduct = (props: Props) => {
             <input {...register('quantity', { required: true, minLength: 0 })} type="number" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
             {errors.price && <span className='text-red-600'>vui lòng nhập số lượng</span>}
          </div>
-         {/* <div className="mb-6">
+         <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image</label>
             <input {...register('image', { required: true })} type="file" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-         </div> */}
+         </div>
          <div className='mb-6'>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color</label>
             <div className="flex">
