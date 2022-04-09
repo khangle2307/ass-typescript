@@ -12,10 +12,6 @@ const WebsiteLayout = (props: Props) => {
       <header>
          <Header/>
        </header>
-       <section>
-         <Slider/>
-         <img  className='mx-auto'src="https://cdn.cellphones.com.vn/media/wysiwyg/Banner/1200-75-max.png" alt="" />
-       </section>
        <main>
           <Outlet/>
        </main>

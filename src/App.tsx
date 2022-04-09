@@ -16,6 +16,7 @@ import HomePage from './pages/view/HomePage'
 import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import NotFound from './pages/view/NotFound'
+import DetailProduct from './pages/view/DetailProduct'
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         //website router
         <Route path='/' element={<WebsiteLayout/>}>
           <Route index element={<HomePage/>}/>
+          //product router 
+          <Route path='products' element={<h1>Product page</h1>}/>
+          <Route path='product/:id' element={<DetailProduct/>}/>
           //auth router
           <Route path='signup' element={<Signup/>}/>
           <Route path='signin' element={<Signin/>}/>
@@ -34,7 +38,7 @@ function App() {
         <Route path='admin' element={<AdminLayout/>}>
           <Route index element={<Navigate to={"dashboard"}/>}/>
           <Route path='dashboard' element={<Dashboard/>}/>
-          //product router
+          //product admin router
           <Route path='products'>
             <Route index  element={<ProductManager/>}/>
             <Route path='add' element={<AddProduct/>}/>

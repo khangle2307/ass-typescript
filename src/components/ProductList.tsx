@@ -1,8 +1,17 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { getProducts } from '../features/productSlice';
+import { ProductType } from '../types/product';
 type Props = {}
 
 const ProductList = (props: Props) => {
+   const products = useSelector((state : any)=> state.product.data);
+   const dispatch = useDispatch();
+   useEffect(() => {
+      dispatch(getProducts());
+      console.log(products);
+   },[dispatch])
    return (
       <div className='px-[30px]'>
          <div className='flex justify-between my-[15px]'>
@@ -15,31 +24,16 @@ const ProductList = (props: Props) => {
             </div>
          </div>
          <div className='flex space-x-2'>
-            <div className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
-               <img className='text-center w-[200px] h-[200px]' src="https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-se-red-select-20220322.jpg" alt="" />
-               <p className='text-base font-medium'>iPhone SE 2022 | Chính hãng VN/A</p>
-               <p className='text-red-600 font-semibold'>12.490.000 ₫</p>
-            </div>
-            <div className='w-[250px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
-               <img className='text-center w-[200px] h-[200px]' src="https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-se-red-select-20220322.jpg" alt="" />
-               <p className='text-base font-medium'>iPhone SE 2022 | Chính hãng VN/A</p>
-               <p className='text-red-600 font-semibold'>12.490.000 ₫</p>
-            </div>
-            <div className='w-[250px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
-               <img className='text-center w-[200px] h-[200px]' src="https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-se-red-select-20220322.jpg" alt="" />
-               <p className='text-base font-medium'>iPhone SE 2022 | Chính hãng VN/A</p>
-               <p className='text-red-600 font-semibold'>12.490.000 ₫</p>
-            </div>
-            <div className='w-[250px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
-               <img className='text-center w-[200px] h-[200px]' src="https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-se-red-select-20220322.jpg" alt="" />
-               <p className='text-base font-medium'>iPhone SE 2022 | Chính hãng VN/A</p>
-               <p className='text-red-600 font-semibold'>12.490.000 ₫</p>
-            </div>
-            <div className='w-[250px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
-               <img className='text-center w-[200px] h-[200px]' src="https://image.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-se-red-select-20220322.jpg" alt="" />
-               <p className='text-base font-medium'>iPhone SE 2022 | Chính hãng VN/A</p>
-               <p className='text-red-600 font-semibold'>12.490.000 ₫</p>
-            </div>
+            {products?.map((item : ProductType,index : number) => {
+               return <Link key={index} to={`/product/${item._id}`}>
+                        <div  className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
+                           <img className='text-center w-[200px] h-[200px]' src={item.image} alt="" />
+                           <Link to={`/product/${item._id}`} className='text-base font-medium'>{item.name}</Link>
+                           <p className='text-red-600 font-semibold'>{item.price}</p>
+                        </div>
+                     </Link> 
+               
+            })}
          </div>
       </div>
    )
