@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../../features/productSlice';
+import { getProduct } from '../../features/productSlice';
 import { addItemToCart } from '../../features/cartSlice';
 type Props = {}
 
 const DetailProduct = (props: Props) => {
   const { id } = useParams();
-  const product = useSelector(state => getProductById(state, id));
+  const product = useSelector((state : any) => state.product.data);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProduct(id))
+  },[dispatch,id])
+  
 
   return (
     <div>
@@ -21,7 +25,7 @@ const DetailProduct = (props: Props) => {
           <h2 className='text-[24px] font-medium'>{product.name}</h2>
           <p className='text-lg text-red-600 font-semibold'>Giá {product.price}</p>
           <p>{product.description}</p>
-          <button className='w-[145px] h-[40px] bg-red-600 text-white rounded-lg' onClick={() => {dispatch(addItemToCart())}}>Thêm vào giỏ hàng</button>
+          <button className='w-[145px] h-[40px] bg-red-600 text-white rounded-lg' onClick={() => {dispatch(addItemToCart(product))}}>Thêm vào giỏ hàng</button>
         </div>
       </div>
 

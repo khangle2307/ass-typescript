@@ -17,6 +17,7 @@ import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import NotFound from './pages/view/NotFound'
 import DetailProduct from './pages/view/DetailProduct'
+import Cart from './pages/view/Cart'
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
           //product router 
           <Route path='products' element={<h1>Product page</h1>}/>
           <Route path='product/:id' element={<DetailProduct/>}/>
+          //cart router 
+          <Route path='/cart'element={<Cart/>}/>
           //auth router
           <Route path='signup' element={<Signup/>}/>
           <Route path='signin' element={<Signin/>}/>
