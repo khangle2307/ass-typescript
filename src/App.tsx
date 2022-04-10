@@ -22,9 +22,6 @@ import { useSelector } from 'react-redux'
 
 
 function App() {
-  const user = JSON.parse(localStorage.getItem("user") as string);
-  console.log(user.user._id);
-  
   return (
     <div className="App">
       <Routes>

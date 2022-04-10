@@ -11,14 +11,14 @@ const DetailProduct = (props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct(id))
-  },[dispatch])
+  },[dispatch,id])
+  console.log(product);
   
-
   return (
     <div>
       <p className='text-base p-3'>Trang chủ / sản phẩm / chi tiết sản phẩm</p>
       <div className='flex px-3'>
-        <div className='w-[250px] h-[300px] border-[1px] rounded-lg py-6'>
+        <div className='w-[500px] h-[300px] border-[1px] rounded-lg py-6'>
           <img src={product.image} />
         </div>
         <div className='mx-[30px]'>
