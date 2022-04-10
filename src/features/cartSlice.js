@@ -9,15 +9,15 @@ const cartSlice = createSlice({
    reducers : {
       addItemToCart (state,action) {
          const newItem = action.payload;
-         console.log(newItem);
          const existItem = state.data.find(item => item.id === newItem.id);
-         console.log(existItem);
          if(!existItem) {
             state.data.push({
+               id : newItem._id,
                name : newItem.name,
                price : newItem.price,
                image : newItem.image,
                desc : newItem.description,
+               totalPrice : newItem.price,
                quantity : 1 
             })
          }else{

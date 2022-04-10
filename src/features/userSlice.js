@@ -18,7 +18,7 @@ export const signinUser = createAsyncThunk(
    "user/signin",
    async (userData) => {
       const { data } = await signin(userData);
-      console.log(data);
+      localStorage.setItem("user",JSON.stringify(data));
       return data;
    }
 )  

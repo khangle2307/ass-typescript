@@ -2,7 +2,8 @@ import { ProductType } from "../types/product";
 import { instance } from "./config";
 import { isAuthenticate } from "../utils/localstorage";
 
-const { token, user} = isAuthenticate();
+const { token , user } = isAuthenticate();
+console.log(user);
 
 export const getAll = () => {
    const url = `/products`;

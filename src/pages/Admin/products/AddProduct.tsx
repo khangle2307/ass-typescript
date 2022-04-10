@@ -20,6 +20,7 @@ const layout = {
 //typescript type
 type Props = {}
 type InputForm = {
+   _id : string,
    name: string,
    price: number,
    quantity: number,
@@ -43,7 +44,6 @@ const AddProduct = (props: Props) => {
    const onSubmit : SubmitHandler<InputForm> = async (data) => {
       const imageURL = await uploadImage(data);
       data.image = imageURL.url;
-      
       dispatch(createProduct(data))
       navigate("/admin/products");
       

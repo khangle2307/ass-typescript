@@ -2,7 +2,9 @@ import { PostType } from "../types/post";
 import { isAuthenticate } from "../utils/localstorage";
 import { instance } from "./config";
 
-const { token , user } = isAuthenticate();
+const { token ,user} = isAuthenticate();
+console.log(user);
+
 
 export const getAll = () => {
    const url = `/posts`;

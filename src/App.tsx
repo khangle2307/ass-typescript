@@ -18,9 +18,13 @@ import Signup from './pages/Signup'
 import NotFound from './pages/view/NotFound'
 import DetailProduct from './pages/view/DetailProduct'
 import Cart from './pages/view/Cart'
+import { useSelector } from 'react-redux'
 
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user") as string);
+  console.log(user.user._id);
+  
   return (
     <div className="App">
       <Routes>
