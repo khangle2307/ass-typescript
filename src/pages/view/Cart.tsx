@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductType } from '../../types/product';
-import { removeItemToCart } from '../../features/cartSlice';
+import { increment,decrement , removeItemToCart } from '../../features/cartSlice';
 
 type Props = {}
 
@@ -49,10 +49,10 @@ const Cart = (props: Props) => {
               <td className="px-6 py-4">
                 <img src={item.image} alt="" width={80} />
               </td>
-              <td className="px-6 py-4 flex">
-                <button className='button'>+</button>
-                {item.quantity}
-                <button>-</button>
+              <td className="px-6 py-4 flex item-center my-5">
+                <button className="text-2xl text-black" onClick={() => dispatch(increment(item._id))}> + </button>
+                <span className='text-lg text-black px-5'>{item.quantity}</span>
+                <button className="text-2xl text-black" onClick={() => dispatch(decrement(item._id))}> - </button>
               </td>
               <td className="px-6 py-4">
                 <svg onClick={() => dispatch(removeItemToCart(item._id))} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
