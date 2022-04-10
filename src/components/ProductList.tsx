@@ -24,15 +24,12 @@ const ProductList = (props: Props) => {
             </div>
          </div>
          <div className='flex space-x-2'>
-            {products?.map((item : ProductType,index : number) => {               
-               return <div key={index}>
-                        <div  className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
+            {products.map((item : ProductType,index : number) => {              
+                  return <div key={index} className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
                            <img className='text-center w-[200px] h-[200px]' src={item.image} alt="" />
                            <Link to={`/product/${item._id}`} className='text-base font-medium'>{item.name}</Link>
                            <p className='text-red-600 font-semibold'>{item.price}</p>
-                        </div>
-                     </div> 
-               
+                        </div>    
             })}
          </div>
       </div>

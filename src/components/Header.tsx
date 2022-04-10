@@ -12,7 +12,7 @@ const Header = (props: Props) => {
    const dispatch = useDispatch();   
    return (
       <div className='h-[70px] bg-red-600 flex justify-around items-center'>
-         <Link to={"/"} className="text-white text-2xl font-semibold">CellPhones</Link>
+         <Link to={'/'} className="text-white text-2xl font-semibold">CellPhones</Link>
          <SearchBar />
          <Navbar />
          <div className='flex space-x-10'>

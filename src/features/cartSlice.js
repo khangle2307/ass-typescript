@@ -14,7 +14,10 @@ const cartSlice = createSlice({
          console.log(existItem);
          if(!existItem) {
             state.data.push({
-               ...newItem,
+               name : newItem.name,
+               price : newItem.price,
+               image : newItem.image,
+               desc : newItem.description,
                quantity : 1 
             })
          }else{

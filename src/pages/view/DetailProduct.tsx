@@ -11,7 +11,7 @@ const DetailProduct = (props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct(id))
-  },[dispatch,id])
+  },[dispatch])
   
 
   return (
