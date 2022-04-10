@@ -23,7 +23,7 @@ const DetailProduct = (props: Props) => {
         </div>
         <div className='mx-[30px]'>
           <h2 className='text-[24px] font-medium'>{product.name}</h2>
-          <p className='text-lg text-red-600 font-semibold'>Giá {product.price}</p>
+          <p className='text-lg text-red-600 font-semibold'>Giá {product.price} đ</p>
           <p>{product.description}</p>
           <button className='w-[145px] h-[40px] bg-red-600 text-white rounded-lg' onClick={() => {dispatch(addItemToCart(product))}}>Thêm vào giỏ hàng</button>
         </div>

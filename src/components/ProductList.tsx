@@ -6,12 +6,12 @@ import { ProductType } from '../types/product';
 type Props = {}
 
 const ProductList = (props: Props) => {
-   const products = useSelector((state : any)=> state.product.data);
+   const { data , isLoading } = useSelector((state : any)=> state.product);
+   
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getProducts());
-      console.log(products);
-   },[dispatch])
+   },[dispatch,isLoading])
    return (
       <div className='px-[30px]'>
          <div className='flex justify-between my-[15px]'>
@@ -24,13 +24,13 @@ const ProductList = (props: Props) => {
             </div>
          </div>
          <div className='flex space-x-2'>
-            {products.map((item : ProductType,index : number) => {              
+            {isLoading === false ?  data.map((item : ProductType,index : number) => {              
                   return <div key={index} className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
                            <img className='text-center w-[200px] h-[200px]' src={item.image} alt="" />
-                           <Link to={`/product/${item._id}`} className='text-base font-medium'>{item.name}</Link>
-                           <p className='text-red-600 font-semibold'>{item.price}</p>
+                           <Link to={`/product/${item._id}`} className='text-base font-medium text-black'>{item.name}</Link>
+                           <p className='text-red-600 font-semibold'>{item.price} đ</p>
                         </div>    
-            })}
+            }) : (<div>...Loading</div>)}
          </div>
       </div>
    )

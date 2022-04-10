@@ -1,7 +1,9 @@
 module.exports = {
   content: ["./src/**/*.{html,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      display : ['group-hover']
+    },
   },
   plugins: [],
 }

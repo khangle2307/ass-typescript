@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux'
 
 
 function App() {
+  const { data}  = useSelector((state : any) => state.cart)
   return (
     <div className="App">
       <Routes>

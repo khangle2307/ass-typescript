@@ -5,7 +5,6 @@ export const getProducts = createAsyncThunk(
    'products/getProducts',
    async () => {
       const { data } = await getAll();
-      console.log(data);
       return data;
    }
 )
@@ -52,11 +51,13 @@ export const removeProductById = createAsyncThunk(
 const productSlice = createSlice({
    name : "product",
    initialState : {
-      data : []
+      data : [],
+      isLoading : true,
    },
    extraReducers : (builder) =>  {
       builder.addCase(getProducts.fulfilled,(state,action) => {
          state.data = action.payload;
+         state.isLoading = false;
       }),
       builder.addCase(getProduct.fulfilled,(state,action) => {
          state.data = action.payload

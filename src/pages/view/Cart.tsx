@@ -1,6 +1,4 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ProductType } from '../../types/product';
 import { increment,decrement , removeItemToCart } from '../../features/cartSlice';
 
 type Props = {}
@@ -8,7 +6,7 @@ type Props = {}
 const Cart = (props: Props) => {
   const cart = useSelector((state: any) => state.cart.data);
   const dispatch = useDispatch();
-  console.log(cart);
+  console.table(cart);
   return (
     <div className="relative overflow-x-auto p-5">
       <table className="w-[700px] text-sm text-left text-gray-500 dark:text-gray-400 border-[1px]">
@@ -61,7 +59,6 @@ const Cart = (props: Props) => {
               </td>
             </tr>
           })}
-
         </tbody>
       </table>
     </div>
