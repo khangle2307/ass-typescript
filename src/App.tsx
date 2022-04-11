@@ -19,6 +19,7 @@ import NotFound from './pages/view/NotFound'
 import DetailProduct from './pages/view/DetailProduct'
 import Cart from './pages/view/Cart'
 import { useSelector } from 'react-redux'
+import Checkout from './pages/view/Checkout'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='product/:id' element={<DetailProduct/>}/>
           //cart router 
           <Route path='/cart'element={<Cart/>}/>
+          <Route path='/checkout' element={<Checkout/>}/>
           //auth router
           <Route path='signup' element={<Signup/>}/>
           <Route path='signin' element={<Signin/>}/>
