@@ -26,7 +26,6 @@ type InputForm = {
    quantity: number,
    image : FileList,
    cloudinary_id : string,
-   color: string[],
    memory: string,
    category: string,
    description : string
@@ -71,24 +70,6 @@ const AddProduct = (props: Props) => {
          <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image</label>
             <input {...register('image', { required: true })} type="file" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-         </div>
-         <div className='mb-6'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color</label>
-            <div className="flex">
-               <div className="form-check form-check-inline mx-2">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1" value="yellow" />
-                  <label className="form-check-label inline-block text-gray-800" >yellow</label>
-               </div>
-               <div className="form-check form-check-inline mx-2">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" value="gray" />
-                  <label className="form-check-label inline-block text-gray-800" >gray</label>
-               </div>
-               <div className="form-check form-check-inline">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" value="black" />
-                  <label className="form-check-label inline-block text-gray-800" >black</label>
-               </div>
-            </div>
-            {errors.color && <span className='text-red-600'>vui lòng chọn màu</span>}
          </div>
          <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Memory</label>

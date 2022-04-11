@@ -3,15 +3,15 @@ import { useForm , SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CategoryType } from '../../../types/category';
-import { getProduct , updateProductById } from '../../../features/productSlice';
+import { getProductById , updateProductById } from '../../../features/productSlice';
 import { getCategories } from '../../../features/categorySlice';
+import { uploadImage } from '../../../utils/cloudinary';
 type Props = {}
 type InputForm = {
    name: string,
    price: number,
    quantity: number,
    image : string,
-   color: string[],
    memory: string,
    category: string,
    description : string
@@ -19,24 +19,23 @@ type InputForm = {
 
 const UpdateProduct = (props: Props) => {
   const { id } = useParams();
-  const product = useSelector((state : any) => state.product.data);
+  const product = useSelector((state : any) => getProductById(state,id))
   const categories = useSelector((state : any) => state.category.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {register,handleSubmit,formState : {errors} ,reset} = useForm<InputForm>();
 
    useEffect(() => {
-      dispatch(getCategories());
-      dispatch(getProduct(id));
+      dispatch(getCategories())
       reset(product)
-   },[id])
+   },[dispatch,id])
 
    console.log(categories);
-   
    console.log(product);
    
-   
-  const onSubmit : SubmitHandler<InputForm> = (data) => {
+  const onSubmit : SubmitHandler<InputForm> = async (data) => {
+      const imageURL = await uploadImage(data);
+      data.image = imageURL.url;
       dispatch(updateProductById(data));
       navigate("/admin/products");
   }
@@ -62,24 +61,6 @@ const UpdateProduct = (props: Props) => {
          <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Image</label>
             <input {...register('image', { required: true })} type="file" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-         </div>
-         <div className='mb-6'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Color</label>
-            <div className="flex">
-               <div className="form-check form-check-inline mx-2">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1" value="yellow" />
-                  <label className="form-check-label inline-block text-gray-800" >yellow</label>
-               </div>
-               <div className="form-check form-check-inline mx-2">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" value="gray" />
-                  <label className="form-check-label inline-block text-gray-800" >gray</label>
-               </div>
-               <div className="form-check form-check-inline">
-                  <input  {...register('color', { required: true })} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" value="black" />
-                  <label className="form-check-label inline-block text-gray-800" >black</label>
-               </div>
-            </div>
-            {errors.color && <span className='text-red-600'>vui lòng chọn màu</span>}
          </div>
          <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Memory</label>
@@ -129,7 +110,7 @@ const UpdateProduct = (props: Props) => {
                       ease-in-out
                       m-0
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                         {categories?.map((item : CategoryType,index : number) => {
+                         {categories.map((item : CategoryType,index : number) => {
                            return  <option key={index} value={item._id}>{item.name}</option>
                          })}
                       </select>
@@ -164,7 +145,7 @@ const UpdateProduct = (props: Props) => {
                </div>
             </div>
          </div>
-         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
       </form>
     </div>
   )

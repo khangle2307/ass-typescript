@@ -5,7 +5,6 @@ export type ProductType = {
    quantity : number,
    cloudinary_id : string,
    image : string,
-   color : string[],
    memory : string,
    category : string
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../../features/productSlice';
+import { getProduct } from '../../features/productSlice';
 import { addItemToCart } from '../../features/cartSlice';
 type Props = {}
 
@@ -10,7 +10,7 @@ const DetailProduct = (props: Props) => {
   const product = useSelector((state : any) => state.product.data);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProductById(id))
+    dispatch(getProduct(id))
   },[dispatch,id])
   console.log(product);
   

@@ -1,23 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Swiper ,SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import "swiper/css";
 import "swiper/css/navigation";
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../features/categorySlice';
 
 type Props = {}
 const Slider = (props: Props) => {
+  const categories = useSelector((state : any) => state.category.data);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategories())
+  },[])
+  console.log(categories);
+  
   return (
     <div className='flex my-3 px-[30px]'>
       <div className='w-[210px] h-[370px] rounded-lg shadow-md'>
         <ul className='p-4 space-y-5'>
-          <li><a href=""className='text-sm font-semibold text-black' >Apple</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Samsung</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Oppo</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Xiaomi</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Huwei</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Nokia</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Realme</a></li>
-          <li><a href=""className='text-sm font-semibold text-black' >Vivo</a></li>
+          {categories.map((item : any,index : number) => {
+            return <li key={index}><a href=""className='text-sm font-semibold text-black' >{item.name}</a></li>
+          })}
         </ul>
       </div>
        <Swiper className='w-[700px] h-[300px] mx-0 my-0' navigation={true} modules={[Navigation]} slidesPerView={1}>
