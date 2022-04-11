@@ -61,20 +61,7 @@ const userSlice = createSlice({
       data : [],
       isAuthenticated : false
    },
-   reducers : {
-      logoutUser(state){
-         state.data = null;
-         state.isAuthenticated = false;
-      }
-   },
    extraReducers : (builder) =>  {
-      builder.addCase(signupUser.fulfilled,(state,action) => {
-         state.data = action.payload;
-      }),
-      builder.addCase(signinUser.fulfilled,(state,action) => {
-         state.isAuthenticated = true;
-         state.data = action.payload;
-      }),
       builder.addCase(getUsers.fulfilled,(state,action) => {
          state.data = action.payload;
       }),
@@ -82,12 +69,9 @@ const userSlice = createSlice({
          state.data = action.payload;
       }),
       builder.addCase(updateUserById.fulfilled,(state,action) => {
-         const {fullName , email ,phoneNumber , address } = action.payload;
-         const user = state.data;
-         user.fullName = fullName;
-         user.email = email;
-         user.phoneNumber = phoneNumber;
-         user.address = address;
+         const {_id ,fullName , email ,phoneNumber , address } = action.payload;
+         const existUser = state.data.find((item) => item._id === _id)
+         console.log(existUser);
       }),
       builder.addCase(removeUserById.fulfilled,(state,action) => {
          const { _id } = action.payload;

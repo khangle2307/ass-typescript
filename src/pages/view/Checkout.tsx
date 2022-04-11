@@ -28,7 +28,7 @@ const Checkout = (props: Props) => {
    },[])
    
    const onSubmit: SubmitHandler<InputForm> = (data) => {
-      console.log({data,cart});
+      console.log({data,product : cart});
    }
    return (
       <div>

@@ -21,7 +21,8 @@ const Profile = (props: Props) => {
   useEffect(() => {
      dispatch(getUserById(id))
      reset(user);
-  },[])
+  },[dispatch])
+  console.log(user);
   
   const onSubmit : SubmitHandler<InputForm> = (data) => {
      dispatch(updateUserById(data));
