@@ -49,12 +49,12 @@ const cartSlice = createSlice({
          state.totalQuantity--;
       },
       removeItemToCart (state,action) {
-         state.totalQuantity--;
          const id = action.payload;
          const existItem = state.data.find(item => item._id === id);
          console.log(existItem);
          const removeItem = state.data.filter(item => item._id !== id);
-          state.data = removeItem;
+         state.data = removeItem;
+         state.totalQuantity -= existItem.quantity;
       }
    }
 })

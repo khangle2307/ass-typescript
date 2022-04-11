@@ -1,6 +1,6 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import { signin, signup } from '../api/auth';
-import { getAll, getById , removeById } from '../api/user';
+import { getAll, getById , removeById, updateById } from '../api/user';
 
 export const signupUser = createAsyncThunk(
    "user/signup",
@@ -39,6 +39,13 @@ export const getUserById = createAsyncThunk(
    }
 )
 
+export const updateUserById = createAsyncThunk(
+   "users/updateUserById",
+   async(userData) => {
+      const { data } = await updateById(userData);
+      return data;
+   }
+)
 
 export const removeUserById = createAsyncThunk(
    "users/removeUserById",
@@ -74,10 +81,18 @@ const userSlice = createSlice({
       builder.addCase(getUserById.fulfilled,(state,action) => {
          state.data = action.payload;
       }),
+      builder.addCase(updateUserById.fulfilled,(state,action) => {
+         const {fullName , email ,phoneNumber , address } = action.payload;
+         const user = state.data;
+         user.fullName = fullName;
+         user.email = email;
+         user.phoneNumber = phoneNumber;
+         user.address = address;
+      }),
       builder.addCase(removeUserById.fulfilled,(state,action) => {
          const { _id } = action.payload;
-         const removeItem = state.data.filter(item => item._id !== _id);
-         state.data = removeItem;
+         const removeUser = state.data.filter(item => item._id !== _id);
+         state.data = removeUser;
       })
    }
 })

@@ -21,7 +21,6 @@ const Checkout = (props: Props) => {
    const totalCart = cart.reduce((total: number, item: any) => {
       return total + item.quantity * item.price;
     }, 0)
-   console.log(user);
    
    const { register, handleSubmit, formState: { errors } , reset} = useForm<InputForm>();
    useEffect(() => {
@@ -38,7 +37,7 @@ const Checkout = (props: Props) => {
             <form className='w-[800px] m-5' onSubmit={handleSubmit(onSubmit)}>
                <div className="mb-6">
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-                  <input {...register('email', { required: true })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='họ và tên' />
+                  <input {...register('email', { required: true })} type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='họ và tên' />
                   {errors.email && <span className='text-red-500 py-2'>Vui lòng nhập email</span>}
                </div>
                <div className="mb-6">
