@@ -15,8 +15,7 @@ const UserManganger = (props: Props) => {
   useEffect(() => {
      dispatch(getUsers());
      
-  },[])
-  console.log(users);
+  },[dispatch])
 
   const data = users.map((item : UserType,index : number) => {
      return {

@@ -1,7 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { signup , signin } from '../api/auth';
+
+export const signupUser = createAsyncThunk(
+   "auth/signup",
+   async (userData, { rejectWithValue }) => {
+      try {
+         const { data } = await signup(userData);
+         return data;
+      } catch (error) {
+         return rejectWithValue(error.response.data);
+      }
+   }
+)
+
+export const signinUser = createAsyncThunk(
+   "auth/signin",
+   async (userData) => {
+      const { data } = await signin(userData);
+      return data;
+   }
+)  
+
 
 const authSlice = createSlice({
-   name : "user",
+   name : "auth",
    initialState : {
       data : [],
       isAuthenticated : false

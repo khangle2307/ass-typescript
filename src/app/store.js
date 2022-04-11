@@ -6,7 +6,7 @@ import rootReducer from '../features/index';
 const persistConfig = {
    key : "root",
    storage,
-   whitelist : ['user','cart']
+   whitelist : ['auth','cart']
 }
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);

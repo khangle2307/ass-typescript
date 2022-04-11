@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signinUser } from '../features/userSlice';
+import { signinUser } from '../features/authSlice';
 
 type Props = {}
 type InputForm = {

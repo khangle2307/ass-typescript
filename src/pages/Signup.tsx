@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm , SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { signupUser } from '../features/userSlice';
+import { signupUser } from '../features/authSlice';
 type Props = {}
 type InputForm = {
    name : string,

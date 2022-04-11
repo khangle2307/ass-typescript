@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import SearchBar from './SearchBar'
-import { logoutUser } from './../features/userSlice';
+import { logoutUser } from './../features/authSlice';
 import { isAuthenticate } from '../utils/localstorage';
 
 type Props = {}
 
 const Header = (props: Props) => {
-   const { user } = useSelector((state : any) => state.user.data || {});
+   const { user } = useSelector((state : any) => state.auth.data || {});
    const totalQuantity = useSelector((state : any ) => state.cart.totalQuantity);   
    const dispatch = useDispatch();   
    return (
