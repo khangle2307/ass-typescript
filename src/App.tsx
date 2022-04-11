@@ -20,6 +20,7 @@ import DetailProduct from './pages/view/DetailProduct'
 import Cart from './pages/view/Cart'
 import { useSelector } from 'react-redux'
 import Checkout from './pages/view/Checkout'
+import SuccessCheckout from './pages/view/SuccessCheckout'
 
 
 function App() {
@@ -35,7 +36,10 @@ function App() {
           <Route path='product/:id' element={<DetailProduct/>}/>
           //cart router 
           <Route path='/cart'element={<Cart/>}/>
-          <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='/checkout'>
+            <Route index element={<Checkout/>}/>
+            <Route path='success' element={<SuccessCheckout/>}/>
+          </Route>
           //auth router
           <Route path='signup' element={<Signup/>}/>
           <Route path='signin' element={<Signin/>}/>
