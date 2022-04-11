@@ -5,6 +5,11 @@ export const getAll = () => {
    return instance.get(url);
 }
 
+export const getById = (_id : string) => {
+   const url = `/users/${_id}`;
+   return instance.get(url);
+}
+
 export const removeById = (_id : string) => {
    const url = `/users/${_id}`;
    return instance.delete(url);

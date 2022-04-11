@@ -11,8 +11,7 @@ const Cart = (props: Props) => {
   const totalCart = cart.reduce((total: number, item: any) => {
     return total + item.quantity * item.price;
   }, 0)
-  console.log(cart);
-
+ 
   return (
     <div>
       <p className='text-base font-normal m-5'>Trang chủ / Giỏ hàng</p>
@@ -82,7 +81,7 @@ const Cart = (props: Props) => {
           <p>Phí vận chuyển : 0đ</p>
           <p>Số lượng : {totalQuantity}</p>
           <p>Tổng tiền : {totalCart} đ</p>
-          <Link to={"/checkout"} className="block bg-red-600 text-white text-center p-2 rounded-lg hover:bg-red-500 hover:text-white">Thanh toán</Link>
+          <Link to={`/checkout`} className="block bg-red-600 text-white text-center p-2 rounded-lg hover:bg-red-500 hover:text-white">Thanh toán</Link>
         </div>
       </div>
     </div>

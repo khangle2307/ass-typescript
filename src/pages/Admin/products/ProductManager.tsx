@@ -13,7 +13,7 @@ type Props = {}
 const ProductManager = (props: Props) => {
   const products = useSelector((state : any) => state.product.data);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getProducts());
     console.log(products);

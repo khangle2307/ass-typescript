@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment, removeItemToCart } from '../../features/cartSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getUserById } from '../../features/userSlice';
+
 type Props = {}
 type InputForm = {
-   userName: string,
+   email: string,
+   fullName : string,
    phoneNumber: number,
    address: string,
    paymentMethod: string,
@@ -13,13 +16,20 @@ type InputForm = {
 }
 const Checkout = (props: Props) => {
    const cart = useSelector((state: any) => state.cart.data);
+   const { user } = useSelector((state : any) => state.user.data);
    const dispatch = useDispatch();
    const totalCart = cart.reduce((total: number, item: any) => {
       return total + item.quantity * item.price;
     }, 0)
-   const { register, handleSubmit, formState: { errors } } = useForm<InputForm>();
+   console.log(user);
+   
+   const { register, handleSubmit, formState: { errors } , reset} = useForm<InputForm>();
+   useEffect(() => {
+      reset(user);
+   },[])
+   
    const onSubmit: SubmitHandler<InputForm> = (data) => {
-      console.log(data);
+      console.log({data,cart});
    }
    return (
       <div>
@@ -27,9 +37,14 @@ const Checkout = (props: Props) => {
          <div className='flex'>
             <form className='w-[800px] m-5' onSubmit={handleSubmit(onSubmit)}>
                <div className="mb-6">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+                  <input {...register('email', { required: true })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='họ và tên' />
+                  {errors.email && <span className='text-red-500 py-2'>Vui lòng nhập email</span>}
+               </div>
+               <div className="mb-6">
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Họ và tên</label>
-                  <input {...register('userName', { required: true })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='họ và tên' />
-                  {errors.userName && <span className='text-red-500 py-2'>Vui lòng nhập tên</span>}
+                  <input {...register('fullName', { required: true })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='họ và tên' />
+                  {errors.fullName && <span className='text-red-500 py-2'>Vui lòng nhập tên</span>}
                </div>
                <div className="mb-6">
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Số điện thoại</label>

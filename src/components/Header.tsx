@@ -9,7 +9,6 @@ type Props = {}
 
 const Header = (props: Props) => {
    const user  = useSelector((state : any) => state.user.data);
-   console.log(user);
    const totalQuantity = useSelector((state : any ) => state.cart.totalQuantity);   
    const dispatch = useDispatch();   
    return (
