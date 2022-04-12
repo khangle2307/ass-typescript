@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../features/categorySlice';
+import { Link } from 'react-router-dom';
 
 type Props = {}
 const Slider = (props: Props) => {
@@ -20,7 +21,7 @@ const Slider = (props: Props) => {
       <div className='w-[210px] h-[370px] rounded-lg shadow-md'>
         <ul className='p-4 space-y-5'>
           {categories.map((item : any,index : number) => {
-            return <li key={index}><a href=""className='text-sm font-semibold text-black' >{item.name}</a></li>
+            return <li key={index}><Link to={`/category/${item._id}`} className='text-sm font-semibold text-black' >{item.name}</Link></li>
           })}
         </ul>
       </div>

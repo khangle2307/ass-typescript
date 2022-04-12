@@ -16,7 +16,7 @@ type InputForm = {
 }
 const Checkout = (props: Props) => {
    const cart = useSelector((state: any) => state.cart.data);
-   const { user } = useSelector((state : any) => state.user.data);
+   const user  = useSelector((state : any) => state.user.data);
    const dispatch = useDispatch();
    const totalCart = cart.reduce((total: number, item: any) => {
       return total + item.quantity * item.price;

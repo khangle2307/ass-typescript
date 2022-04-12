@@ -1,6 +1,5 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import { signin, signup } from '../api/auth';
-import { getAll, getById , removeById, updateById } from '../api/user';
+import { getAll , getById, removeById, updateById } from '../api/user';
 
 
 export const getUsers = createAsyncThunk(
@@ -13,7 +12,7 @@ export const getUsers = createAsyncThunk(
 
 export const getUserById = createAsyncThunk(
    "users/getUserById",
-   async (_id) => {
+   async(_id) => {
       const { data } = await getById(_id);
       return data;
    }
@@ -38,19 +37,23 @@ export const removeUserById = createAsyncThunk(
 const userSlice = createSlice({
    name : "user",
    initialState : {
-      data : [],
+      data : []
    },
    extraReducers : (builder) =>  {
       builder.addCase(getUsers.fulfilled,(state,action) => {
          state.data = action.payload;
       }),
       builder.addCase(getUserById.fulfilled,(state,action) => {
-         state.data = action.payload;
+        state.data = action.payload;
       }),
       builder.addCase(updateUserById.fulfilled,(state,action) => {
-         const {_id ,fullName , email ,phoneNumber , address } = action.payload;
-         const existUser = state.data.find((item) => item._id === _id)
-         console.log(existUser);
+         const {fullName , email ,phoneNumber , address } = action.payload;
+         const user = state.data;
+         user.fullName = fullName;
+         user.email = email;
+         user.phoneNumber = phoneNumber;
+         user.address = address;
+         state.data = action.payload;
       }),
       builder.addCase(removeUserById.fulfilled,(state,action) => {
          const { _id } = action.payload;

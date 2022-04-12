@@ -10,6 +10,14 @@ export const getCategories = createAsyncThunk(
    }
 )
 
+export const getCategory = createAsyncThunk(
+   "categories/getCategoryById",
+   async(_id) => {
+      const { data } = await getById(_id);
+      return data;
+   }
+)
+
 export const getCategoryById = (state,_id) => {
    const category = state.category.data.find( item => item._id === _id);
    return category;
@@ -48,6 +56,9 @@ const categorySlice = createSlice({
    },
   extraReducers : (builder) => {
     builder.addCase(getCategories.fulfilled,(state,action) => {
+       state.data = action.payload
+    }),
+    builder.addCase(getCategory.fulfilled,(state,action) => {
        state.data = action.payload
     }),
     builder.addCase(addCategory.fulfilled,(state,action) => {

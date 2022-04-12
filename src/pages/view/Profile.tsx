@@ -13,20 +13,19 @@ type InputForm = {
 }
 const Profile = (props: Props) => {
   const { id } = useParams();
-  const { user } = useSelector((state : any) => state.user.data);
+  const user = useSelector((state : any) => state.user.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register , handleSubmit , formState : { errors } ,reset} = useForm<InputForm>();
 
   useEffect(() => {
-     dispatch(getUserById(id))
-     reset(user);
-  },[dispatch])
-  console.log(user);
-  
+     dispatch(getUserById(id));
+     reset(user)
+   },[dispatch,id])
+   
   const onSubmit : SubmitHandler<InputForm> = (data) => {
      dispatch(updateUserById(data));
-     navigate(`/profile/${id}`);
+     navigate(`/`);
   }
   return (
     <div>

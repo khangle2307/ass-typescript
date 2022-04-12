@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux'
 import Checkout from './pages/view/Checkout'
 import SuccessCheckout from './pages/view/SuccessCheckout'
 import Profile from './pages/view/Profile'
+import CateProduct from './pages/view/CateProduct'
 
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
           //product router 
           <Route path='products' element={<h1>Product page</h1>}/>
           <Route path='product/:id' element={<DetailProduct/>}/>
+
+          //category router
+          <Route path='category/:id' element={<CateProduct/>}/>
           //cart router 
           <Route path='/cart'element={<Cart/>}/>
           <Route path='/checkout'>
