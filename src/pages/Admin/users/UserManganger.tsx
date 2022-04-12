@@ -29,7 +29,8 @@ const UserManganger = (props: Props) => {
   })
   return (
     <div>
-       <Button type='primary' className='my-3'><Link to={"add"}>Add</Link></Button>
+      <p className='text-base font-normal m-5'>Admin / User</p>
+      <Button type='primary' className='my-3'><Link to={"add"}>Add</Link></Button>
       <Table dataSource={data} rowKey="index">
         <Column title="*" dataIndex="index" key="index" />
         <Column title="FullName" dataIndex="fullName" key="fullName" />

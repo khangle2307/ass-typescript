@@ -30,10 +30,6 @@ const AdminLayout = (props: Props) => {
       </Menu>
     </Header>
     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,backgroundColor : 'white'}}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Admin</Breadcrumb.Item>
-        <Breadcrumb.Item>Dasboard</Breadcrumb.Item>
-      </Breadcrumb>
       <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
         <Outlet/>
       </div>

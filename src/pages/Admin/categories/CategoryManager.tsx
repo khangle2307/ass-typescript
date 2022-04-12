@@ -32,6 +32,7 @@ const CategoryManager = (prop: Props) => {
   })
   return (
     <div>
+      <p className='text-base font-normal m-5'>Admin / Category</p>
       <Button type='primary'><a href="categories/add">Add</a></Button>
       <Table dataSource={data} rowKey="index">
         <Column title="*" dataIndex="index" key="index" />

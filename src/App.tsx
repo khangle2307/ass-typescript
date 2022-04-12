@@ -23,6 +23,7 @@ import Checkout from './pages/view/Checkout'
 import SuccessCheckout from './pages/view/SuccessCheckout'
 import Profile from './pages/view/Profile'
 import CateProduct from './pages/view/CateProduct'
+import PrivateRouter from './pages/PrivateRouter'
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
           <Route path='*' element={<NotFound/>}/>
         </Route>
         //admin router
-        <Route path='admin' element={<AdminLayout/>}>
+        <Route path='admin' element={<PrivateRouter><AdminLayout/></PrivateRouter>}>
           <Route index element={<Navigate to={"dashboard"}/>}/>
           <Route path='dashboard' element={<Dashboard/>}/>
           //product admin router

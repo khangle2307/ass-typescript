@@ -34,7 +34,8 @@ const PostManager = (props: Props) => {
 
   return (
     <div>
-       <Button type='primary' className='my-3'><Link to={"add"}>Add</Link></Button>
+      <p className='text-base font-normal m-5'>Admin / Post</p>
+      <Button type='primary' className='my-3'><Link to={"add"}>Add</Link></Button>
       <Table dataSource={data} rowKey="index">
         <Column title="*" dataIndex="index" key="index" />
         <Column title="Title" dataIndex="title" key="title" />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signinUser } from '../features/authSlice';
 
 type Props = {}
@@ -10,7 +10,10 @@ type InputForm = {
    password : string
 }
 const Signin = (props: Props) => {
+  const user = useSelector((state : any) => state.auth.data);
+  console.log(user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {register,handleSubmit,formState : {errors}} = useForm<InputForm>();
   const onSubmit : SubmitHandler<InputForm> = ( data ) => {
      dispatch(signinUser(data));

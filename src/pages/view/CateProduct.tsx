@@ -7,7 +7,7 @@ type Props = {}
 
 const CateProduct = (props: Props) => {
    const { id } = useParams();
-   const  product  = useSelector((state: any) => state.category.data.product);
+   const  { product }  = useSelector((state: any) => state.category.data);
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getCategory(id))
