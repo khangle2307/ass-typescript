@@ -3,7 +3,7 @@ import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { Link } from 'react-router-dom';
 import { SlideType } from '../../../types/slide';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSliders } from '../../../features/slideSlice';
+import { getSliders , removeSlider } from '../../../features/slideSlice';
 
 const { Column } = Table;
 
@@ -50,7 +50,7 @@ const SliderManager = (props: Props) => {
               <Popconfirm
                 title="Are you sure to delete this task?"
                 onConfirm={() => {
-                
+                  dispath(removeSlider(record._id))
                   message.success("Deleted is success !");
                 }}
                 onCancel={() => {
