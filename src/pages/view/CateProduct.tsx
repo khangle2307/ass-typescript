@@ -7,24 +7,25 @@ type Props = {}
 
 const CateProduct = (props: Props) => {
    const { id } = useParams();
-   const  { product }  = useSelector((state: any) => state.category.data);
+   const  data  = useSelector((state: any) => state.category.data);
    const dispatch = useDispatch();
+   
    useEffect(() => {
       dispatch(getCategory(id))
-   }, [])
-   console.log(product);
+   }, [id])
+   console.log(data);
 
    return (
       <div>
          <p className='text-sm font-normal m-5'>Trang chủ / Danh sách sản phẩm</p>
          <div className='flex flex-wrap space-x-2'>
-            {product.map((item: any, index: number) => {
+            {data.product ? data.product.map((item: any, index: number) => {
                return <div key={index} className='w-[230px] h-[350px] shadow-xl rounded-lg p-3 hover:scale-105 ease-in-out duration-500 cursor-pointer'>
                   <img className='text-center w-[200px] h-[200px]' src={item.image} alt="" />
                   <Link to={`/product/${item._id}`} className='text-base font-medium text-black'>{item.name}</Link>
                   <p className='text-red-600 font-semibold'>{item.price} đ</p>
                </div>
-            })}
+            }) : null}
          </div>
       </div>
    )

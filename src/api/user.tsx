@@ -6,7 +6,7 @@ export const getAll = () => {
    return instance.get(url);
 }
 
-export const getById = (_id : string) => {
+export const getById = (_id : any) => {
    const url = `/users/${_id}`;
    return instance.get(url);
 }

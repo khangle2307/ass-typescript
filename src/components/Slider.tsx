@@ -13,16 +13,15 @@ const Slider = (props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories())
-  },[])
-  console.log(categories);
+  },[dispatch])
   
   return (
     <div className='flex my-3 px-[30px]'>
       <div className='w-[210px] h-[370px] rounded-lg shadow-md'>
         <ul className='p-4 space-y-5'>
-          {categories.map((item : any,index : number) => {
+          {categories.length > 0 ?  categories.map((item : any,index : number) => {
             return <li key={index}><Link to={`/category/${item._id}`} className='text-sm font-semibold text-black' >{item.name}</Link></li>
-          })}
+          }) : null}
         </ul>
       </div>
        <Swiper className='w-[700px] h-[300px] mx-0 my-0' navigation={true} modules={[Navigation]} slidesPerView={1}>

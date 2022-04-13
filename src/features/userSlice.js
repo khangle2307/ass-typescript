@@ -21,8 +21,12 @@ export const getUserById = createAsyncThunk(
 export const updateUserById = createAsyncThunk(
    "users/updateUserById",
    async(userData) => {
-      const { data } = await updateById(userData);
-      return data;
+      try {
+         const { data } = await updateById(userData);
+         return data;
+      } catch (error) {
+         return error
+      }
    }
 )
 
@@ -35,7 +39,7 @@ export const removeUserById = createAsyncThunk(
 )
 
 const userSlice = createSlice({
-   name : "user",
+   name : "users",
    initialState : {
       data : []
    },
@@ -47,13 +51,10 @@ const userSlice = createSlice({
         state.data = action.payload;
       }),
       builder.addCase(updateUserById.fulfilled,(state,action) => {
-         const {fullName , email ,phoneNumber , address } = action.payload;
-         const user = state.data;
-         user.fullName = fullName;
-         user.email = email;
-         user.phoneNumber = phoneNumber;
-         user.address = address;
-         state.data = action.payload;
+         state.data.email = action.payload.email;
+         state.data.fullName = action.payload.fullName;
+         state.data.phoneNumber = action.payload.phoneNumber;
+         state.data.address = action.payload.address;
       }),
       builder.addCase(removeUserById.fulfilled,(state,action) => {
          const { _id } = action.payload;
