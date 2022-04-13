@@ -25,6 +25,7 @@ import Profile from './pages/view/Profile'
 import CateProduct from './pages/view/CateProduct'
 import PrivateRouter from './pages/PrivateRouter'
 import SliderManager from './pages/Admin/slider/SliderManager'
+import AddSlider from './pages/Admin/slider/AddSlider'
 
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
           //slide router 
           <Route path='sliders'>
             <Route index element={<SliderManager/>}/>
+            <Route path='add' element={<AddSlider/>}/>
           </Route>
         </Route>
       </Routes>

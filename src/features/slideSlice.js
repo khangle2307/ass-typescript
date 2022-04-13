@@ -1,11 +1,19 @@
 import { createSlice , createAsyncThunk} from "@reduxjs/toolkit"
-import { deleteById, getAll } from '../api/slide';
+import { deleteById, createOne ,  getAll } from '../api/slide';
 
 export const getSliders = createAsyncThunk(
    "sliders/getSliders",
    async () => {
       const { data } = await getAll();
       return data;
+   }
+)
+
+export const createSlider = createAsyncThunk(
+   "sliders/createSlider",
+   async (dataSlider) => {
+      const { data } = await createOne(dataSlider);
+      return data; 
    }
 )
 

@@ -52,6 +52,7 @@ const ProductManager = (props: Props) => {
         <Column title="Color" dataIndex="color" key="color" />
         <Column title="Memory" dataIndex="memory" key="memory" />
         <Column title="Description" dataIndex="description" key="description" />
+        <Column title="Id" dataIndex="_id" key="_id" />
         <Column
           title="Action"
           key="action"

@@ -30,6 +30,7 @@ export const signinUser = createAsyncThunk(
    "auth/signin",
    async (userData) => {
       const { data } = await signin(userData);
+      localStorage.setItem("user",JSON.stringify(data));
       return data;
    }
 )  
