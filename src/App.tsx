@@ -24,6 +24,7 @@ import SuccessCheckout from './pages/view/SuccessCheckout'
 import Profile from './pages/view/Profile'
 import CateProduct from './pages/view/CateProduct'
 import PrivateRouter from './pages/PrivateRouter'
+import SliderManager from './pages/Admin/slider/SliderManager'
 
 
 function App() {
@@ -76,6 +77,10 @@ function App() {
           //user router
           <Route path='users'>
             <Route index element={<UserManganger/>}/>
+          </Route>
+          //slide router 
+          <Route path='sliders'>
+            <Route index element={<SliderManager/>}/>
           </Route>
         </Route>
       </Routes>

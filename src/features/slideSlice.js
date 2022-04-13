@@ -1,13 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice , createAsyncThunk} from "@reduxjs/toolkit"
+import { getAll } from '../api/slide';
 
-const slideSlice = createSlice({
-   namne : "slice",
+export const getSliders = createAsyncThunk(
+   "sliders/getSliders",
+   async () => {
+      const { data } = await getAll();
+      return data;
+   }
+)
+
+
+const sliderSlice = createSlice({
+   name : "sliders",
    initialState : {
       data : []
    },
-   extraReducers : {
-
+   extraReducers : (builder) =>  {
+      builder.addCase(getSliders.fulfilled,(state,action) => {
+         state.data = action.payload;
+      })
    }
 })
 
-export default slideSlice.reducer;
+export default sliderSlice.reducer;
