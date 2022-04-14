@@ -42,6 +42,7 @@ const Checkout = (props: Props) => {
       data.totalPrice = totalCart;
       
       
+      
 
    }
    return (

@@ -6,6 +6,7 @@ import authReducer from './authSlice';
 import postReducer from "./postSlice";
 import cartReducer from "./cartSlice";
 import sliderReducer from './slideSlice';
+import orderReducer from './order';
 
 const rootReducer = combineReducers({
    category : categoryReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
    auth : authReducer,
    post : postReducer,
    cart : cartReducer,
-   slider : sliderReducer
+   slider : sliderReducer,
+   order : orderReducer
 })
 
 export default rootReducer;
