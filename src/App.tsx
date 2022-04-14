@@ -43,8 +43,8 @@ function App() {
           //category router
           <Route path='category/:id' element={<CateProduct/>}/>
           //cart router 
-          <Route path='/cart'element={<Cart/>}/>
-          <Route path='/checkout'>
+          <Route path='/cart/:id'element={<Cart/>}/>
+          <Route path='/checkout/:id'>
             <Route index element={<Checkout/>}/>
             <Route path='success' element={<SuccessCheckout/>}/>
           </Route>

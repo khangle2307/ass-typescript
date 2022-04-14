@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment, removeItemToCart } from '../../features/cartSlice';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getUserById } from '../../features/userSlice';
+import { getById } from '../../api/user';
 
 type Props = {}
 type InputForm = {
@@ -11,12 +12,16 @@ type InputForm = {
    fullName : string,
    phoneNumber: number,
    address: string,
+   itemList : [],
+   totalQuantity : number,
+   totalPrice : number,
    paymentMethod: string,
    note: string,
 }
 const Checkout = (props: Props) => {
+   const { id } = useParams();
    const cart = useSelector((state: any) => state.cart.data);
-   const user  = useSelector((state : any) => state.user.data);
+   const totalQuantity = useSelector((state : any) => state.cart.totalQuantity);
    const dispatch = useDispatch();
    const totalCart = cart.reduce((total: number, item: any) => {
       return total + item.quantity * item.price;
@@ -24,11 +29,20 @@ const Checkout = (props: Props) => {
    
    const { register, handleSubmit, formState: { errors } , reset} = useForm<InputForm>();
    useEffect(() => {
-      reset(user);
+      const getUser = async () => {
+         const { data } = await getById(id);
+         reset(data); 
+      }
+      getUser();
    },[])
    
    const onSubmit: SubmitHandler<InputForm> = (data) => {
-      console.log({data,product : cart});
+      data.itemList = cart;
+      data.totalQuantity = totalQuantity;
+      data.totalPrice = totalCart;
+      
+      
+
    }
    return (
       <div>

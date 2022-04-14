@@ -1,18 +1,26 @@
 import { Empty } from 'antd';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { getById } from '../../api/user';
 import { increment, decrement, removeItemToCart } from '../../features/cartSlice';
-
+import { getUserById } from '../../features/userSlice'; 
 type Props = {}
 
 const Cart = (props: Props) => {
+  const { id } = useParams();
+  const user = useSelector((state : any) => state.user.data);
   const cart = useSelector((state: any) => state.cart.data);
   const totalQuantity = useSelector((state: any) => state.cart.totalQuantity);
   const dispatch = useDispatch();
   const totalCart = cart.reduce((total: number, item: any) => {
     return total + item.quantity * item.price;
   }, 0)
- 
+  
+  useEffect(() => {
+   dispatch(getUserById(id))
+  },[])
+  
   return (
     <div>
       <p className='text-base font-normal m-5'>Trang chủ / Giỏ hàng</p>
@@ -82,7 +90,7 @@ const Cart = (props: Props) => {
           <p>Phí vận chuyển : 0đ</p>
           <p>Số lượng : {totalQuantity}</p>
           <p>Tổng tiền : {totalCart} đ</p>
-          <Link to={`/checkout`} className="block bg-red-600 text-white text-center p-2 rounded-lg hover:bg-red-500 hover:text-white">Thanh toán</Link>
+          <Link to={`/checkout/${user._id}`} className="block bg-red-600 text-white text-center p-2 rounded-lg hover:bg-red-500 hover:text-white">Thanh toán</Link>
         </div>
       </div>
     </div>
