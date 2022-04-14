@@ -5,16 +5,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../features/categorySlice';
+import { getSliders } from '../features/slideSlice';
 import { Link } from 'react-router-dom';
+import { SlideType } from '../types/slide';
 
 type Props = {}
 const Slider = (props: Props) => {
   const categories = useSelector((state : any) => state.category.data);
+  const sliders = useSelector((state : any) => state.slider.data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories())
+    dispatch(getSliders())
   },[dispatch])
-  
+
   return (
     <div className='flex my-3 px-[30px]'>
       <div className='w-[210px] h-[370px] rounded-lg shadow-md'>
@@ -25,10 +29,11 @@ const Slider = (props: Props) => {
         </ul>
       </div>
        <Swiper className='w-[700px] h-[300px] mx-0 my-0' navigation={true} modules={[Navigation]} slidesPerView={1}>
-          <SwiperSlide className='flex justify-center items-center'><img className='rounded-lg' src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/CPS_690x300_April.jpg" alt="" /></SwiperSlide>
-          <SwiperSlide className='flex justify-center items-center'><img className='rounded-lg' src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/Xiaomi_buds_3.png" alt="" /></SwiperSlide>
-          <SwiperSlide className='flex justify-center items-center'><img className='rounded-lg' src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/S22_uLTRA.png" alt="" /></SwiperSlide>
-          <SwiperSlide className='flex justify-center items-center'><img className='rounded-lg' src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/iPhone_11.png" alt="" /></SwiperSlide>
+         {sliders ?  sliders.map((item : SlideType, index : number) => {
+           return <SwiperSlide key={index} className='flex justify-center items-center'><img className='rounded-lg' src={item.image} alt="" /></SwiperSlide>
+         }) : null}
+         
+          
        </Swiper>
        <div className='space-y-2'>
          <img className='w-[250px] rounded-lg shadow-xl' src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/note_20_ultra.png" alt="" />

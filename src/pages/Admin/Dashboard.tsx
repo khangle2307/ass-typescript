@@ -4,7 +4,7 @@ import { getCategories } from '../../features/categorySlice';
 import { getProducts } from '../../features/productSlice';
 import { getUsers } from '../../features/userSlice';
 import { getPosts } from '../../features/postSlice';
-
+import { getSliders } from "../../features/slideSlice";
 type Props = {}
 
 const Dashboard = (props: Props) => {
@@ -12,12 +12,14 @@ const Dashboard = (props: Props) => {
   const categories = useSelector((state : any) => state.category.data);
   const user = useSelector((state : any) => state.user.data);
   const post = useSelector((state : any) => state.post.data);
+  const slider = useSelector((state : any) => state.slider.data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
     dispatch(getUsers());
     dispatch(getPosts());
+    dispatch(getSliders());
   },[])
   return (
     <div>
@@ -34,6 +36,9 @@ const Dashboard = (props: Props) => {
         </div>
         <div className='w-[250px] h-[100px] bg-green-400 text-white rounded-lg shadow-lg'>
           <p className='p-5'>số lượng bài viết: {post.length} bài viết</p>
+        </div>
+        <div className='w-[250px] h-[100px] bg-orange-600 text-white rounded-lg shadow-lg my-3'>
+          <p className='p-5'>số lượng slider ảnh: {slider.length} bài viết</p>
         </div>
       </div>
      
