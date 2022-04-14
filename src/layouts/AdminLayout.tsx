@@ -30,6 +30,9 @@ const AdminLayout = (props: Props) => {
         <Menu.Item key="6">
           <NavLink to={"sliders"}>Slide ảnh</NavLink>
         </Menu.Item>
+        <Menu.Item key="7">
+          <NavLink to={"order"}>Đơn hàng</NavLink>
+        </Menu.Item>
       </Menu>
     </Header>
     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,backgroundColor : 'white'}}>

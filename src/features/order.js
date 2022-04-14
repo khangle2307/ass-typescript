@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getAll } from "../api/order";
+import { create, getAll, getById } from "../api/order";
 
 export const getOrders = createAsyncThunk(
    "orders/getOrders",
@@ -12,14 +12,14 @@ export const getOrders = createAsyncThunk(
 export const getOrderById = createAsyncThunk(
    "orders/getOrderById",
    async (_id) => {
-      const { data } = await getAll(_id);
+      const { data } = await getById(_id);
       return data;
    }
 )
 export const createOrder = createAsyncThunk(
    "orders/createOrder",
    async (orderData) => {
-      const { data } = await getAll(orderData);
+      const { data } = await create(orderData);
       return data;
    }
 )

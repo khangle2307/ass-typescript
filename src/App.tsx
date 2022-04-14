@@ -27,6 +27,7 @@ import PrivateRouter from './pages/PrivateRouter'
 import SliderManager from './pages/Admin/slider/SliderManager'
 import AddSlider from './pages/Admin/slider/AddSlider'
 import UpdateSlider from './pages/Admin/slider/UpdateSlider'
+import OrderManager from './pages/Admin/order/OrderManager'
 
 
 function App() {
@@ -46,8 +47,8 @@ function App() {
           <Route path='/cart/:id'element={<Cart/>}/>
           <Route path='/checkout/:id'>
             <Route index element={<Checkout/>}/>
-            <Route path='success' element={<SuccessCheckout/>}/>
           </Route>
+          <Route path='success' element={<SuccessCheckout/>}/>
           <Route path='/profile/:id' element={<Profile/>}/>
           //auth router
           <Route path='signup' element={<Signup/>}/>
@@ -85,6 +86,10 @@ function App() {
             <Route index element={<SliderManager/>}/>
             <Route path='add' element={<AddSlider/>}/>
             <Route path=':id/edit' element={<UpdateSlider/>}/>
+          </Route>
+          //order router
+          <Route path='order'>
+            <Route index element={<OrderManager/>}/>
           </Route>
         </Route>
       </Routes>

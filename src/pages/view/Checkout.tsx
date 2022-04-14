@@ -3,8 +3,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment, removeItemToCart } from '../../features/cartSlice';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getUserById } from '../../features/userSlice';
 import { getById } from '../../api/user';
+import { createOrder } from '../../features/order';
 
 type Props = {}
 type InputForm = {
@@ -26,8 +26,9 @@ const Checkout = (props: Props) => {
    const totalCart = cart.reduce((total: number, item: any) => {
       return total + item.quantity * item.price;
     }, 0)
-   
    const { register, handleSubmit, formState: { errors } , reset} = useForm<InputForm>();
+
+   const navigate = useNavigate();
    useEffect(() => {
       const getUser = async () => {
          const { data } = await getById(id);
@@ -40,10 +41,8 @@ const Checkout = (props: Props) => {
       data.itemList = cart;
       data.totalQuantity = totalQuantity;
       data.totalPrice = totalCart;
-      
-      
-      
-
+      dispatch(createOrder(data))
+      navigate("/success")
    }
    return (
       <div>
