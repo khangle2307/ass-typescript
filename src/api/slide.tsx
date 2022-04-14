@@ -18,7 +18,7 @@ export const createOne = (slide : SlideType) => {
    })
 }
 
-export const getById = (_id : string) => {
+export const getById = (_id : any) => {
    const url = `/sliders/${_id}`;
    return instance.get(url)
 }

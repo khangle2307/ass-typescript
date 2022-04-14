@@ -26,6 +26,7 @@ import CateProduct from './pages/view/CateProduct'
 import PrivateRouter from './pages/PrivateRouter'
 import SliderManager from './pages/Admin/slider/SliderManager'
 import AddSlider from './pages/Admin/slider/AddSlider'
+import UpdateSlider from './pages/Admin/slider/UpdateSlider'
 
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
           <Route path='sliders'>
             <Route index element={<SliderManager/>}/>
             <Route path='add' element={<AddSlider/>}/>
+            <Route path=':id/edit' element={<UpdateSlider/>}/>
           </Route>
         </Route>
       </Routes>
