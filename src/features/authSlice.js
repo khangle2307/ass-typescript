@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { signup , signin } from '../api/auth';
 import { updateById } from "../api/user";
 
@@ -31,6 +32,7 @@ export const signinUser = createAsyncThunk(
    async (userData) => {
       const { data } = await signin(userData);
       localStorage.setItem("user",JSON.stringify(data));
+
       return data;
    }
 )  
@@ -44,8 +46,9 @@ const authSlice = createSlice({
    },
    reducers : {
       logoutUser(state){
-         state.data = null;
+         state.data = "";
          state.isAuthenticated = false;
+         toast.success("đăng xuất thành công !")
       }
    },
    extraReducers : (builder) =>  {
@@ -61,6 +64,8 @@ const authSlice = createSlice({
       builder.addCase(signinUser.fulfilled,(state,action) => {
          state.isAuthenticated = true;
          state.data = action.payload;
+         toast.success("đăng nhập thành công !")
+
       })
     
    }

@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { signinUser } from '../features/authSlice';
 
 type Props = {}
@@ -17,6 +18,7 @@ const Signin = (props: Props) => {
   const {register,handleSubmit,formState : {errors}} = useForm<InputForm>();
   const onSubmit : SubmitHandler<InputForm> = ( data ) => {
      dispatch(signinUser(data));
+     navigate("/");
   }
   
    

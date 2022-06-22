@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Space, Table, Button , Popconfirm, message} from 'antd';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders } from '../../../features/order';
 type Props = {}
 const { Column } = Table;
 
 const OrderManager = (props: Props) => {
   const orders = useSelector((state : any) => state.order.data);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOrders())
+  },[])
+  console.log(orders);
+  
   const data = orders.map((item : any,index : number) => {
      return {
         index : index + 1,
         _id : item._id,
-        itemList : item.itemList,
         totalPrice : item.totalPrice,
         totalQuantity : item.totalQuantity,
         paymentMethod : item.paymentMethod
